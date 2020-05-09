@@ -1,0 +1,66 @@
+$xxs: 320px;
+$xs: 576px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+
+@mixin respond-to($media) {
+  @if $media == from-xs {
+    @media (max-width: $xs + 1) {
+      @content;
+    }
+  } @else if $media == from-sm {
+    @media (min-width: $xs + 1) {
+      @content;
+    }
+  } @else if $media == from-md {
+    @media (min-width: $sm + 1) {
+      @content;
+    }
+  } @else if $media == from-lg {
+    @media (min-width: $md + 1) {
+      @content;
+    }
+  } @else if $media == xs {
+    @media (max-width: $sm) {
+      @content;
+    }
+  } @else if $media == sm {
+    @media (min-width: $sm + 1) and (max-width: $md) {
+      @content;
+    }
+  } @else if $media == md {
+    @media (min-width: $md + 1) and (max-width: $lg) {
+      @content;
+    }
+  } @else if $media == lg {
+    @media (min-width: $lg + 1) {
+      @content;
+    }
+  } @else if $media == below-xs {
+    @media (max-width: $xs) {
+      @content;
+    }
+  } @else if $media == below-sm {
+    @media (max-width: $sm) {
+      @content;
+    }
+  } @else if $media == below-md {
+    @media (max-width: $md) {
+      @content;
+    }
+  } @else if $media == below-lg {
+    @media (max-width: $lg) {
+      @content;
+    }
+  }
+}
+
+@mixin fa-icon() {
+  @extend .fas;
+}
+
+@mixin fa-content($icon, $collection: "Free") {
+  font-family: "Font Awesome 5 #{$collection}";
+  content: fa-content($icon);
+}
