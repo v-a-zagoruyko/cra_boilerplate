@@ -1,1 +1,1 @@
-export { default as isEmpty } from "lodash-es/isEmpty";
+export { default as isEmpty } from 'lodash-es/isEmpty';

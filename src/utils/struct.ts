@@ -1,6 +1,6 @@
-import { AxiosRequestConfig } from "axios";
-import { action } from "mobx";
-import { camelizeKeys } from "humps";
+import { AxiosRequestConfig } from 'axios';
+import { action } from 'mobx';
+import { camelizeKeys } from 'humps';
 
 export interface Struct<T, E> {
   data?: T;
@@ -35,7 +35,7 @@ const defaultOpts = {
 export const createStructFlow = (request: any = {}) => <T>(
   struct: Struct<T, any>,
   axiosParams: AxiosRequestConfig,
-  opts: StructFlowOpts<T> = defaultOpts
+  opts: StructFlowOpts<T> = defaultOpts,
 ): Promise<any> => {
   const runAction = action(async () => {
     struct.data = undefined;
@@ -47,7 +47,7 @@ export const createStructFlow = (request: any = {}) => <T>(
       const preparedData = transformResponse ? transformResponse(data) : data;
       struct.data = (preparedData as T) || ({} as T);
     } catch (error) {
-      if (process.env.NODE_ENV === "development") {
+      if (process.env.NODE_ENV === 'development') {
         console.error(error);
       }
       struct.errors = error;
@@ -63,7 +63,7 @@ export const structFlow = createStructFlow();
 export async function authStructFlow<T>(
   struct: Struct<T, any>,
   axiosParams: AxiosRequestConfig,
-  opts: AuthStructFlowOpts<T> = defaultOpts
+  opts: AuthStructFlowOpts<T> = defaultOpts,
 ): Promise<any> {
   const transformResponse = (d: T) => {
     const camelizedPayload = camelizeKeys(d as any) as any;
@@ -84,6 +84,6 @@ export async function authStructFlow<T>(
     {
       ...opts,
       transformResponse,
-    }
+    },
   );
 }
